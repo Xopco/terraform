@@ -7,6 +7,10 @@ terraform {
   }
 }
 
+resource "google_service_account" "default" {
+  account_id   = "889083590091-compute@developer.gserviceaccount.com"
+  display_name = "Service Account"
+}
 
 // Terraform plugin for creating random ids
 resource "random_id" "instance_id" {
@@ -14,7 +18,7 @@ resource "random_id" "instance_id" {
 }
 
 // A single Compute Engine instance
-resource "google_compute_instance" "vm_instance" {
+resource "google_compute_instance" "default" {
   name         = "g-vm-${random_id.instance_id.hex}"
   machine_type = "f1-micro"
   zone         = "europe-north1-a"
@@ -29,5 +33,11 @@ resource "google_compute_instance" "vm_instance" {
 
  network_interface {
    network = "default"
+  }
+
+    service_account {
+    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
+    email  = 889083590091-compute@developer.gserviceaccount.com
+    scopes = ["cloud-platform"]
   }
 }
