@@ -34,10 +34,4 @@ resource "google_compute_instance" "default" {
  network_interface {
    network = "default"
   }
-
-    service_account {
-    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = xopco@yandex.ru
-    scopes = ["cloud-platform"]
-  }
 }
