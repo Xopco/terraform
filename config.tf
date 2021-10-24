@@ -20,7 +20,7 @@ resource "random_id" "instance_id" {
 
 // A single Compute Engine instance
 resource "google_compute_instance" "default" {
-  name = "g-vm-${random_id.instance_id.hex}"
+  name = "vm-${random_id.instance_id.hex}"
   machine_type = "f1-micro"
   zone = "europe-north1-a"
 
@@ -30,7 +30,7 @@ resource "google_compute_instance" "default" {
     }
   }
       // Make sure flask is installed on all new instances for later steps
- metadata_startup_script = "sudo apt-get update; sudo apt-get install mc"
+ metadata_startup_script = "sudo apt update; sudo apt install mc"
 
  network_interface {
    network = "default"
