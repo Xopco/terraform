@@ -7,10 +7,6 @@ terraform {
   }
 }
 
-provider "google" {
-  project = "{{YOUR GCP PROJECT}}"
-  region  = "us-central1"
-  zone    = "us-central1-c"
 
 // Terraform plugin for creating random ids
 resource "random_id" "instance_id" {
@@ -26,7 +22,6 @@ resource "google_compute_instance" "default" {
   boot_disk {
     initialize_params {
       image = "ubuntu/ubuntu-20.04"
-      }
     }
   }
 }
