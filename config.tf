@@ -7,9 +7,10 @@ terraform {
   }
 }
 
-resource "google_service_account" "default" {
-  account_id   = "889083590091-compute@developer.gserviceaccount.com"
-  display_name = "Service Account"
+provider "google" {
+ credentials = file("CREDENTIALS_FILE.json")
+ project     = "new1-330022"
+ region      = "europe-north1-a"
 }
 
 // Terraform plugin for creating random ids
@@ -21,7 +22,6 @@ resource "random_id" "instance_id" {
 resource "google_compute_instance" "default" {
   name         = "g-vm-${random_id.instance_id.hex}"
   machine_type = "f1-micro"
-  zone         = "europe-north1-a"
 
   boot_disk {
     initialize_params {
