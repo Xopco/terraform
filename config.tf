@@ -26,7 +26,7 @@ resource "google_compute_instance" "default" {
 
   boot_disk {
     initialize_params {
-      image = "ubuntu/ubuntu-20.04"
+      image = "ubuntu/ubuntu-2004-lts"
     }
   }
       // Make sure flask is installed on all new instances for later steps
