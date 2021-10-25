@@ -13,16 +13,22 @@ provider "google" {
  region      = "europe-north1"
 }
 
+// Terraform plugin for creating random ids
+resource "random_id" "instance_id" {
+ byte_length = 1
+}
+
 // A single Compute Engine instance
 resource "google_compute_instance" "default" {
-  name         = "build"
-  machine_type = "e2-micro"   #f1-micro g1-small e2-micro e2-small e2-medium
+  count = 1
+  name         = "vm-${random_id.instance_id.hex}"
+  machine_type = "e2-micro"         #f1-micro g1-small e2-micro e2-small e2-medium
   zone         = "europe-north1-a"
-  metadata_startup_script = "sudo apt update -y; sudo apt install default-jdk -y; sudo apt install maven -y; sudo apt install git -y; git clone https://github.com/Xopco/boxfuse-origin.git -y; mvn package -Ddir="/boxfuse-origin/target/""
+  metadata_startup_script = "sudo apt update -y; sudo apt install mc -y"
 
   boot_disk {
     initialize_params {
-      image = "ubuntu-2004-lts"
+      image = "ubuntu-1804-lts"
     }
   }
 
