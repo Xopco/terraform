@@ -29,7 +29,7 @@ resource "google_compute_instance" "default" {
       image = "ubuntu-2004-lts"
     }
   }
-  metadata_startup_script = "sudo apt-get -y update; sudo apt-get -y install mc"
+  metadata_startup_script = "sudo apt update -y; sudo apt install mc -y"
 
  network_interface {
    network = "default"
