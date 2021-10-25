@@ -23,15 +23,19 @@ resource "google_compute_instance" "default" {
   name         = "vm-${random_id.instance_id.hex}"
   machine_type = "f1-micro"
   zone         = "europe-north1-a"
+  metadata_startup_script = "sudo apt update -y; sudo apt install mc -y"
 
   boot_disk {
     initialize_params {
       image = "ubuntu-2004-lts"
     }
   }
-  metadata_startup_script = "sudo apt update -y; sudo apt install mc -y"
 
   network_interface {
     network = "default"
+  }
+
+  access_config {
+      // Include this section to give the VM an external ip address
   }
 }
