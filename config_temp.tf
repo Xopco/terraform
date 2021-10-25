@@ -21,7 +21,7 @@ resource "random_id" "instance_id" {
 // A single Compute Engine instance
 resource "google_compute_instance" "default" {
   name         = "vm-${random_id.instance_id.hex}"
-  machine_type = "f1-micro"
+  machine_type = "e2-micro"         #f1-micro g1-small e2-micro e2-small e2-medium
   zone         = "europe-north1-a"
   metadata_startup_script = "sudo apt update -y; sudo apt install mc -y"
 
