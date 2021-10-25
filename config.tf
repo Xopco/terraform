@@ -29,8 +29,6 @@ resource "google_compute_instance" "default" {
       image = "ubuntu-2004-lts"
     }
   }
-      // Make sure flask is installed on all new instances for later steps
- metadata_startup_script = "sudo apt update; sudo apt install mc"
 
  network_interface {
    network = "default"
