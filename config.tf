@@ -33,9 +33,9 @@ resource "google_compute_instance" "default" {
 
   network_interface {
     network = "default"
-  }
 
   access_config {
-      // Include this section to give the VM an external ip address
+    // Include this section to give the VM an external ip address
+    }
   }
 }
